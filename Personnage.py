@@ -1,3 +1,5 @@
+from tabulate import tabulate
+
 class Personnage:
     def __init__(self,nom,classe,niveau,points_de_vie,force,intelligence) -> None:
         self.nom = nom
@@ -8,12 +10,16 @@ class Personnage:
         self.intelligence = intelligence
         
     def afficher_info(self):
-        print(f"Nom: {self.nom}")
-        print(f"Classe: {self.classe}")
-        print(f"Niveau: {self.niveau}")
-        print(f"Points de vie: {self.points_de_vie}")
-        print(f"Force: {self.force}")
-        print(f"Intelligence: {self.intelligence}")
+        table = [
+            ["Nom", self.nom],
+            ["Classe", self.classe],
+            ["Niveau", self.niveau],
+            ["Points de vie", self.points_de_vie],
+            ["Force", self.force],
+            ["Intelligence", self.intelligence],
+        ]
+
+        print(tabulate(table, tablefmt="fancy_grid"))
         
     def attaquer(self,cible):
         print(f"{self.nom} attaque {cible.nom}!")
